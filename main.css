@@ -1,0 +1,37 @@
+:root {
+    --black: #0D0D0D;
+    --md-p: #390859;
+    --dk-p: #170126;
+    --lt-p: #9144A6;
+    --xlt-p: #EAACF2;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+    margin: 40px;
+    color: var(--black);
+}
+
+
+
+/* DESKTOP */
+@media only screen and (min-width: 769px) {
+    header {
+        color: white;
+    }
+
+    header h1 {
+        color: var(--dk-p);
+        font-weight: 300;
+    }
+
+    .results {
+        color: var(--dk-p);
+        padding: 5px 20px;
+        width: 80%;
+        margin: 10px 0px;
+        border: 1px solid var(--dk-p);
+        border-radius: 5px;
+    }
+}
