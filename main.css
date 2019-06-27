@@ -26,6 +26,35 @@ body {
         font-weight: 300;
     }
 
+    .title-light {
+        font-weight: 300;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+
+    #intro-popup {
+        text-align: center;
+        width: 50%; 
+        position: fixed;
+        top: 400px;
+        left: 400px;
+        border: 2px solid black;
+        border-radius: 10px;
+        background-color: var(--black);
+        color: white;
+    }
+
+    #intro-popup p {
+        margin: 40px;
+    }
+
+    .popup-header i {
+        color: white;
+    }
+
     input[type="text"] {
         background-color: white;
         color: var(--lt-p);
