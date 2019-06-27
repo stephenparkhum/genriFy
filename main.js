@@ -1,67 +1,147 @@
 'use strict';
 
-// LAST FM VERSION
-
-// Application name	genriFy
-// API key	13f28f92c32ac8d35dec5cfb09999ddb
-// Shared secret	6c5fc27db015656c88f17efaf4aee489
-// Registered to	Parkhum
-
-// GET TAGS
-// http://ws.audioscrobbler.com/2.0/
-
 
 
 // SPOTIFY VERSION
-let url = '';
-const searchTypes = {
-    'artist_search': 'artists',
-};
 
-const myCreds = {
-    'api_key': '13f28f92c32ac8d35dec5cfb09999ddb',
-    'sec_key': '6c5fc27db015656c88f17efaf4aee489'
-};
+// CLIENT ID: b8610b1c7d8d4cd49648964d156983a4
+// CLIENT SECRET: 2e993016563d4281a5b1e98f8db936f9
 
-const displayResults = (response) => {
-    $('.results').empty();
-    let listenerSort = [];
-    for (let i = 0; i < response.results.artistmatches.artist.length; i++) {
-        listenerSort.push(`artist: ${response.results.artistmatches.artist[i].name}`);
-        console.log(response.results.artistmatches.artist.sort((a, b) => a.listeners - b. listenerSort));
-        $('.results').append(`
-        <img src="${response.results.artistmatches.artist[i].image[1]["#text"]}" alt="${response.results.artistmatches.artist[i].name}"/><br />
-        <h3>${response.results.artistmatches.artist[i].name}</h3>
-        <p>${response.results.artistmatches.artist[i].listeners}</p>
-        <a href=${response.results.artistmatches.artist[i].url} target="_blank">Last.FM Link</a>
-        `);
+
+let genreList = [];
+
+function getHashParams() {
+    var hashParams = {};
+    var e, r = /([^&;=]+)=?([^&;]*)/g,
+        q = window.location.hash.substring(1);
+    while (e = r.exec(q)) {
+        hashParams[e[1]] = decodeURIComponent(e[2]);
     }
-    
-};
+    return hashParams;
+}
 
-const getResults = (creds, artist) => {
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${artist}&api_key=${creds.api_key}&format=json`)
-  .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-  })
-  .then(text => {
-      displayResults(text);
-    console.log(text.results.artistmatches);
-    console.log('Request successful', text);
-  })
-  .catch(function(error) {
-    console.log('Request failed', error);
-  });
-};
+function getUserData(user) {
+    fetch(`https://api.spotify.com/v1/me`).then(response => {
+            if (response.ok) {
+                console.log(response.json());
+                displayUserData(response.json());
+                return response.json();
 
-const mainApp = (creds) => {
-    $('input[type=submit]').on('click', function(e) {
-        event.preventDefault();
-        let userInput = $('input[type=text]').val();
-        getResults(creds, userInput);
+            }
+        })
+        .then(responseJson => displayUserData(responseJson));
+}
+
+function getSongData(query, type, access_tk) {
+    let headers = new Headers();
+    headers.append('Authorization', `${access_tk}`);
+    let url = `https://api.spotify.com/v1/search?query=${query}&type=${type}&market=US&offset=0&limit=20`;
+    fetch(url, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': `Bearer ${access_tk}`,
+        })
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.log(`shit, this didn't work!`);
+        }
+    }).then(function (text) {
+        displayArtistData(text);
+        console.log(text);
+
     });
+}
+
+function getGenres(access_tk) {
+    let headers = new Headers();
+    headers.append('Authorization', `${access_tk}`);
+    let url = `https://api.spotify.com/v1/recommendations/available-genre-seeds`;
+    fetch(url, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': `Bearer ${access_tk}`,
+        })
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.log(`shit, this didn't work!`);
+        }
+    }).then(text => {
+        for (let i = 0; i < text.genres.length; i++) {
+            console.log(text.genres[i]);
+        }
+    });
+}
+
+const htmlTableInit = text => {
+    $('.results').empty();
+    $('.results').append(`
+    <table class="results-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Artist</th>
+                <th>Genre</th>
+                <th>Followers</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody class="results-artists">
+        </tbody>
+    </table>
+    `);
 };
 
-mainApp(myCreds);
+function genreFilter(text, genre) {
+    console.log(text.artists.items.genres.filter(genre));
+}
+
+function displayArtistData(text) {
+    htmlTableInit(text);
+    for (let i = 0; i < text.artists.items.length; i++) {
+        $('.results-artists').append(`
+        <tr>
+            <td>${i+1}</td>
+            <td>${text.artists.items[i].name}</td>
+            <td>${text.artists.items[i].genres[i]}</td>
+            <td>${text.artists.items[i].followers.total.toLocaleString()}</td>
+            <td><a href=${text.artists.items[i].external_urls.spotify} target="_blank">Spotify</a></td>
+        </tr>
+        `);
+
+
+    //     $('.results').append(`
+    //     <h1>${text.artists.items[i].name}</h1>
+    //     <img src=${text.artists.items[i].images[1].url} alt="${text.artists.items[i].name} Photo"/>
+    //     <p>Genres: ${text.artists.items[i].genres[i]}</p>
+    //     <p>Followers: ${text.artists.items[i].followers.total.toLocaleString()}</p>
+    //     <p>Popularity Rating: ${text.artists.items[i].popularity}</p>
+    // `);
+    }
+}
+
+
+// AUTOCOMPLETE SEARCH
+
+
+
+
+const mainApp = () => {
+    let userData = getHashParams();
+    $('main').append(`<div class="results">
+        </div>`);
+    $('input[type=submit]').on('click', function (event) {
+        event.preventDefault();
+        let songSearch = $('input[type=text]').val();
+        getSongData(songSearch, `artist`, userData.access_token);
+        getGenres(userData.access_token);
+
+    });
+    console.log('the main app is working');
+
+};
+
+mainApp();
