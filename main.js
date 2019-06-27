@@ -64,8 +64,7 @@ function getGenres(access_tk) {
     });
 }
 
-function genreFilter(artist, genre, genre_list) {
-    displayArtistData(artist);
+function genreFilter(genre, genre_list) {
     let genreFormat = genre.replace(" ", "-");
     if (genre_list.includes(genreFormat)) {
         console.log('yes');
@@ -172,11 +171,6 @@ function displayArtistData(text) {
 
 // GENRE SORT TESTS
 
-const genreSort = () => {
-    // Take in list of artists & sort by genre
-};
-
-
 const mainApp = (clientID) => {
     userAuthorize(clientID);
     let userData = getHashParams();
@@ -187,12 +181,9 @@ const mainApp = (clientID) => {
         event.preventDefault();
         let songSearch = $('input[type=text]').val();
         getSongData(songSearch, `artist`, userData.access_token);
-        genreFilter(songSearch, genreList);
-        // console.log(genreList);
+        console.log(genreList);
 
     });
-    console.log('the main app is working');
-
 };
 
 
