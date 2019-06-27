@@ -4,7 +4,7 @@
 
 // SPOTIFY VERSION
 
-// CLIENT ID: b8610b1c7d8d4cd49648964d156983a4
+const CLIENT_ID = `b8610b1c7d8d4cd49648964d156983a4`;
 // CLIENT SECRET: 2e993016563d4281a5b1e98f8db936f9
 
 
@@ -19,6 +19,19 @@ function getHashParams() {
     }
     return hashParams;
 }
+
+const userAuthorize = (clientId) => {
+    let redirect = `http://localhost:5500`;
+    let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
+    $('.spotify-sign-btn').on('click', function() {
+        $('.auth-link').attr('href', url);
+        console.log(url);
+    });
+};
+
+userAuthorize(CLIENT_ID);
+
+
 
 function getUserData(user) {
     fetch(`https://api.spotify.com/v1/me`).then(response => {
@@ -122,6 +135,7 @@ function displayArtistData(text) {
     // `);
     }
 }
+
 
 
 // AUTOCOMPLETE SEARCH

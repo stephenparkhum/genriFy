@@ -104,4 +104,45 @@ body {
         margin: 10px 0px;
         border-radius: 10px;
     }
+
+
+
+    footer {
+        color: var(--xlt-p);
+        padding: 10px;
+        margin: 0;
+        width: 100%;
+        background-color: var(--black);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    footer h4 {
+        font-weight: 300;
+    }
+
+    footer ul {
+        font-weight: 300;
+        align-self: center;
+        list-style: none;
+    }
+
+    footer li {
+        display: inline;
+        padding: 20px;
+    }
+
+    footer li a {
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+    }
+
+    footer li a:hover {
+        color: var(--lt-p);
+    }
 }
