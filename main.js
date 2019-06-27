@@ -41,28 +41,6 @@ function getUserData(user) {
         .then(responseJson => displayUserData(responseJson));
 }
 
-function getSongData(query, type, access_tk) {
-    let headers = new Headers();
-    headers.append('Authorization', `${access_tk}`);
-    let url = `https://api.spotify.com/v1/search?query=${query}&type=${type}&market=US&offset=0&limit=20`;
-    fetch(url, {
-        method: 'GET',
-        headers: new Headers({
-            'Authorization': `Bearer ${access_tk}`,
-        })
-    }).then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            console.log(`shit, this didn't work!`);
-        }
-    }).then(function (text) {
-        displayArtistData(text);
-        getTopTracks(text, access_tk);
-        console.log(text);
-
-    });
-}
 
 function getGenres(access_tk) {
     let headers = new Headers();
@@ -86,6 +64,55 @@ function getGenres(access_tk) {
     });
 }
 
+function getSongData(query, type, access_tk) {
+    let headers = new Headers();
+    headers.append('Authorization', `${access_tk}`);
+    let url = `https://api.spotify.com/v1/search?query=${query}&type=${type}&market=US&offset=0&limit=20`;
+    fetch(url, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': `Bearer ${access_tk}`,
+        })
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.log(`shit, this didn't work!`);
+        }
+    }).then(function (text) {
+        getTopTracks(text, access_tk);
+        displayArtistData(text);
+        console.log(text);
+
+    });
+}
+
+
+function getTopTracks(artist, access_tk) {
+    let headers = new Headers();
+    headers.append('Authorization', `${access_tk}`);
+    let artist_id = artist.artists.items[0].id;
+    let url = `https://api.spotify.com/v1/artists/${artist_id}/top-tracks?country=US`;
+    fetch(url, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': `Bearer ${access_tk}`,
+        })
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.log(`top tracks didn't work!`);
+        }
+    }).then(text => {
+        // for (let i = 0; i < text.tracks.length; i++) {
+        //     console.log(`${text.tracks[i].name} & ${text.tracks[i].popularity}`);
+        // }
+        displayTopTrack(text);
+        console.log(text.tracks);
+    });
+}
+
 const htmlTableInit = () => {
     $('.results').empty();
     $('.results').append(`
@@ -106,29 +133,15 @@ const htmlTableInit = () => {
     `);
 };
 
-function getTopTracks(artist, access_tk) {
-    let artist_id = artist.items[0].id;
-    let url = `https://api.spotify.com/v1/artists/${artist_id}/top-tracks`;
-    fetch(url, {
-        method: 'GET',
-        headers: new Headers({
-            'Authorization': `Bearer ${access_tk}`,
-        })
-    }).then(response => {
-        if (response.ok) {
-            console.log(response.json());
-            return response.json();
-        } else {
-            console.log(`shit, this didn't work!`);
-        }
-    }).then(text => {
-        console.log(`track working`);
-    });
+
+function displayTopTrack(track) {
+    $('.top-track-link').text(`${track.tracks[0].name}`);
+    $('.top-track-link').attr(`href`,`${track.tracks[0].external_urls.spotify}`);
 }
 
 
-function displayArtistData(text) {
 
+function displayArtistData(text) {
     htmlTableInit(text);
     for (let i = 0; i < text.artists.items.length; i++) {
         $('.results-artists').append(`
@@ -138,18 +151,9 @@ function displayArtistData(text) {
             <td>${text.artists.items[i].genres[i]}</td>
             <td>${text.artists.items[i].followers.total.toLocaleString()}</td>
             <td><a href=${text.artists.items[i].external_urls.spotify} target="_blank">Spotify</a></td>
-            <td><a href=${text.artists.items[i].external_urls.spotify} target="_blank">Spotify</a></td>
+            <td><a href="#" target="_blank" class="top-track-link">$</a></td>
         </tr>
         `);
-
-
-        //     $('.results').append(`
-        //     <h1>${text.artists.items[i].name}</h1>
-        //     <img src=${text.artists.items[i].images[1].url} alt="${text.artists.items[i].name} Photo"/>
-        //     <p>Genres: ${text.artists.items[i].genres[i]}</p>
-        //     <p>Followers: ${text.artists.items[i].followers.total.toLocaleString()}</p>
-        //     <p>Popularity Rating: ${text.artists.items[i].popularity}</p>
-        // `);
     }
 }
 

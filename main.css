@@ -125,6 +125,12 @@ body {
         width: 225px;
     }
 
+    .top-track-link {
+        background-color: var(--black);
+        color: white;
+        cur
+    }
+
     .spotify-sign-btn {
         background-color: green;
         color: white;
