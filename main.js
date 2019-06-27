@@ -23,15 +23,11 @@ function getHashParams() {
 const userAuthorize = (clientId) => {
     let redirect = `http://localhost:5500`;
     let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
-    $('.spotify-sign-btn').on('click', function() {
+    $('.spotify-sign-btn').on('click', function () {
         $('.auth-link').attr('href', url);
         console.log(url);
     });
 };
-
-userAuthorize(CLIENT_ID);
-
-
 
 function getUserData(user) {
     fetch(`https://api.spotify.com/v1/me`).then(response => {
@@ -62,6 +58,7 @@ function getSongData(query, type, access_tk) {
         }
     }).then(function (text) {
         displayArtistData(text);
+        getTopTracks(text, access_tk);
         console.log(text);
 
     });
@@ -84,12 +81,12 @@ function getGenres(access_tk) {
         }
     }).then(text => {
         for (let i = 0; i < text.genres.length; i++) {
-            console.log(text.genres[i]);
+            genreList.push(text.genres[i]);
         }
     });
 }
 
-const htmlTableInit = text => {
+const htmlTableInit = () => {
     $('.results').empty();
     $('.results').append(`
     <table class="results-table">
@@ -100,6 +97,7 @@ const htmlTableInit = text => {
                 <th>Genre</th>
                 <th>Followers</th>
                 <th>URL</th>
+                <th>Top Track</th>
             </tr>
         </thead>
         <tbody class="results-artists">
@@ -108,11 +106,29 @@ const htmlTableInit = text => {
     `);
 };
 
-function genreFilter(text, genre) {
-    console.log(text.artists.items.genres.filter(genre));
+function getTopTracks(artist, access_tk) {
+    let artist_id = artist.items[0].id;
+    let url = `https://api.spotify.com/v1/artists/${artist_id}/top-tracks`;
+    fetch(url, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': `Bearer ${access_tk}`,
+        })
+    }).then(response => {
+        if (response.ok) {
+            console.log(response.json());
+            return response.json();
+        } else {
+            console.log(`shit, this didn't work!`);
+        }
+    }).then(text => {
+        console.log(`track working`);
+    });
 }
 
+
 function displayArtistData(text) {
+
     htmlTableInit(text);
     for (let i = 0; i < text.artists.items.length; i++) {
         $('.results-artists').append(`
@@ -122,17 +138,18 @@ function displayArtistData(text) {
             <td>${text.artists.items[i].genres[i]}</td>
             <td>${text.artists.items[i].followers.total.toLocaleString()}</td>
             <td><a href=${text.artists.items[i].external_urls.spotify} target="_blank">Spotify</a></td>
+            <td><a href=${text.artists.items[i].external_urls.spotify} target="_blank">Spotify</a></td>
         </tr>
         `);
 
 
-    //     $('.results').append(`
-    //     <h1>${text.artists.items[i].name}</h1>
-    //     <img src=${text.artists.items[i].images[1].url} alt="${text.artists.items[i].name} Photo"/>
-    //     <p>Genres: ${text.artists.items[i].genres[i]}</p>
-    //     <p>Followers: ${text.artists.items[i].followers.total.toLocaleString()}</p>
-    //     <p>Popularity Rating: ${text.artists.items[i].popularity}</p>
-    // `);
+        //     $('.results').append(`
+        //     <h1>${text.artists.items[i].name}</h1>
+        //     <img src=${text.artists.items[i].images[1].url} alt="${text.artists.items[i].name} Photo"/>
+        //     <p>Genres: ${text.artists.items[i].genres[i]}</p>
+        //     <p>Followers: ${text.artists.items[i].followers.total.toLocaleString()}</p>
+        //     <p>Popularity Rating: ${text.artists.items[i].popularity}</p>
+        // `);
     }
 }
 
@@ -143,19 +160,22 @@ function displayArtistData(text) {
 
 
 
-const mainApp = () => {
+const mainApp = (clientID) => {
+    userAuthorize(clientID);
     let userData = getHashParams();
+    getGenres(userData.access_token);
     $('main').append(`<div class="results">
         </div>`);
     $('input[type=submit]').on('click', function (event) {
         event.preventDefault();
         let songSearch = $('input[type=text]').val();
         getSongData(songSearch, `artist`, userData.access_token);
-        getGenres(userData.access_token);
+        console.log(genreList);
 
     });
     console.log('the main app is working');
 
 };
 
-mainApp();
+
+mainApp(CLIENT_ID);
