@@ -113,6 +113,12 @@ function getTopTracks(artist, access_tk) {
     });
 }
 
+
+
+
+// HTML DISPLAY & FORMATTING
+// These functions handle displaying the artist's data in HTML format
+
 const htmlTableInit = () => {
     $('.results').empty();
     $('.results').append(`
@@ -133,13 +139,10 @@ const htmlTableInit = () => {
     `);
 };
 
-
 function displayTopTrack(track) {
     $('.top-track-link').text(`${track.tracks[0].name}`);
     $('.top-track-link').attr(`href`,`${track.tracks[0].external_urls.spotify}`);
 }
-
-
 
 function displayArtistData(text) {
     htmlTableInit(text);
@@ -158,10 +161,11 @@ function displayArtistData(text) {
 }
 
 
+// GENRE SORT TESTS
 
-// AUTOCOMPLETE SEARCH
-
-
+const genreSort = () => {
+    // Take in list of artists & sort by genre
+};
 
 
 const mainApp = (clientID) => {
