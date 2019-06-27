@@ -64,6 +64,16 @@ function getGenres(access_tk) {
     });
 }
 
+function genreFilter(artist, genre, genre_list) {
+    displayArtistData(artist);
+    let genreFormat = genre.replace(" ", "-");
+    if (genre_list.includes(genreFormat)) {
+        console.log('yes');
+    } else {
+        console.log('no');
+    }
+}
+
 function getSongData(query, type, access_tk) {
     let headers = new Headers();
     headers.append('Authorization', `${access_tk}`);
@@ -83,7 +93,6 @@ function getSongData(query, type, access_tk) {
         getTopTracks(text, access_tk);
         displayArtistData(text);
         console.log(text);
-
     });
 }
 
@@ -178,7 +187,8 @@ const mainApp = (clientID) => {
         event.preventDefault();
         let songSearch = $('input[type=text]').val();
         getSongData(songSearch, `artist`, userData.access_token);
-        console.log(genreList);
+        genreFilter(songSearch, genreList);
+        // console.log(genreList);
 
     });
     console.log('the main app is working');
