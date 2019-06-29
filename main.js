@@ -72,13 +72,27 @@ function genreListOptions(gList) {
     }
 }
 
-function genreFilter(genre, genre_list) {
-    let genreFormat = genre.replace(" ", "-");
-    if (genre_list.includes(genreFormat)) {
-        console.log('yes');
-    } else {
-        console.log('no');
-    }
+// SEARCH BY GENRE
+function genreSearch(query, type, access_tk) {
+    let headers = new Headers();
+    headers.append('Authorization', `${access_tk}`);
+    let url = `https://api.spotify.com/v1/search?query=${query}&type=${type}&market=US&offset=0&limit=20`;
+    fetch(url, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': `Bearer ${access_tk}`,
+        })
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.log(`shit, this didn't work!`);
+        }
+    }).then(function (text) {
+        // getTopTracks(text, access_tk);
+        displayArtistData(text);
+        console.log(text);
+    });
 }
 
 function getSongData(query, type, access_tk) {
@@ -184,6 +198,11 @@ const mainApp = (clientID) => {
         event.preventDefault();
         let songSearch = $('input[type=text]').val();
         getSongData(songSearch, `artist`, userData.access_token);
+
+    });
+
+    $('input[type=submit, id=]').on('click', function(event) {
+        event.preventDefault();
 
     });
 };
