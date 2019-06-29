@@ -32,7 +32,7 @@ const userAuthorize = (clientId) => {
 function getUserData(user) {
     fetch(`https://api.spotify.com/v1/me`).then(response => {
             if (response.ok) {
-                console.log(response.json());
+                // console.log(response.json());
                 displayUserData(response.json());
                 return response.json();
 
@@ -86,11 +86,10 @@ function genreSearch(query, type, access_tk) {
             let popList = [];
             for (let i = 0; i < text.artists.items.length; i++) {
                 popList.push(text.artists.items[i]);
-                console.log(text.artists.items[i].id);
             }
             popList.sort((a, b) => (a.popularity > b.popularity) ? -1 : 1);
             sortByGenre(popList);
-            console.log(text);
+            // console.log(text);
             
         } else {
             $('.results').empty();
