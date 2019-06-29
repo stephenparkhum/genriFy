@@ -5,7 +5,6 @@
 // SPOTIFY VERSION
 
 const CLIENT_ID = `b8610b1c7d8d4cd49648964d156983a4`;
-// CLIENT SECRET: 2e993016563d4281a5b1e98f8db936f9
 
 
 let genreList = [];
@@ -155,6 +154,7 @@ function displayTopTrack(track) {
 function displayArtistData(text) {
     htmlTableInit(text);
     for (let i = 0; i < text.artists.items.length; i++) {
+        getTopTracks();
         $('.results-artists').append(`
         <tr>
             <td>${i+1}</td>
@@ -162,7 +162,7 @@ function displayArtistData(text) {
             <td>${text.artists.items[i].genres[i]}</td>
             <td>${text.artists.items[i].followers.total.toLocaleString()}</td>
             <td><a href=${text.artists.items[i].external_urls.spotify} target="_blank">Spotify</a></td>
-            <td><a href="#" target="_blank" class="top-track-link">$</a></td>
+            <td><a href="#" target="_blank" class="top-track-link"></a></td>
         </tr>
         `);
     }

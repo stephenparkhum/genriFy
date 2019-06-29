@@ -6,6 +6,10 @@
     --xlt-p: #EAACF2;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Lato', sans-serif;
     background-color: white;
@@ -129,6 +133,12 @@ body {
         background-color: var(--black);
         color: white;
         cursor: pointer;
+        padding: 15px;
+        
+    }
+
+    .top-track-link:hover {
+        border-bottom: 5px solid #1DB954;
     }
 
     .spotify-sign-btn {
