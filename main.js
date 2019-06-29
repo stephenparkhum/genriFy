@@ -20,7 +20,7 @@ function getHashParams() {
 }
 
 const userAuthorize = (clientId) => {
-    let redirect = `http://localhost:5500`;
+    let redirect = `https://stephenparkhum.github.io/genriFy/`;
     let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
     $('.spotify-sign-btn').on('click', function () {
         $('.auth-link').attr('href', url);
