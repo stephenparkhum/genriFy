@@ -76,7 +76,7 @@ function genreListOptions(gList) {
 function genreSearch(query, type, access_tk) {
     let headers = new Headers();
     headers.append('Authorization', `${access_tk}`);
-    let url = `https://api.spotify.com/v1/search?q=%20genre:%22${query}%22&type=${type}`;
+    let url = `https://api.spotify.com/v1/search?q=%20genre:%22${query}%22&type=${type}&limit=50`;
     fetch(url, {
         method: 'GET',
         headers: new Headers({
@@ -89,9 +89,31 @@ function genreSearch(query, type, access_tk) {
             console.log(`shit, this didn't work!`);
         }
     }).then(function (text) {
-        displayArtistData(text);
-        console.log(text.artists.items[0].name);
+        let popList = [];
+        // displayArtistData(text);
+        for (let i = 0; i < text.artists.items.length; i++) {
+            popList.push(text.artists.items[i]);
+        }
+        
+        popList.sort((a, b) => (a.popularity > b.popularity) ? -1 : 1);
+        sortGenres(popList);
+        console.log(text);
     });
+}
+
+function sortGenres(text) {
+    htmlTableInit();
+    for (let i = 0; i < text.length; i++) {
+        $('.results-artists').append(`
+        <tr>
+            <td>${i+1}</td>
+            <td>${text[i].name}</td>
+            <td>${text[i].genres[0]}</td>
+            <td>${text[i].popularity}</td>
+            <td><a href=${text[i].external_urls.spotify} target="_blank">Spotify</a></td>
+        </tr>
+        `);
+    }
 }
 
 
@@ -99,7 +121,7 @@ function genreSearch(query, type, access_tk) {
 function getSongData(query, type, access_tk) {
     let headers = new Headers();
     headers.append('Authorization', `${access_tk}`);
-    let url = `https://api.spotify.com/v1/search?query=${query}&type=${type}&market=US&offset=0&limit=20`;
+    let url = `https://api.spotify.com/v1/search?query=${query}&type=${type}&market=US&offset=0&limit=50`;
     fetch(url, {
         method: 'GET',
         headers: new Headers({
@@ -112,7 +134,6 @@ function getSongData(query, type, access_tk) {
             console.log(`shit, this didn't work!`);
         }
     }).then(function (text) {
-        // getTopTracks(text, access_tk);
         displayArtistData(text);
         console.log(text);
     });
@@ -136,9 +157,6 @@ function getTopTracks(artist, access_tk) {
             console.log(`top tracks didn't work!`);
         }
     }).then(text => {
-        // for (let i = 0; i < text.tracks.length; i++) {
-        //     console.log(`${text.tracks[i].name} & ${text.tracks[i].popularity}`);
-        // }
         displayTopTrack(text);
     });
 }
@@ -156,7 +174,7 @@ const htmlTableInit = () => {
                 <th>Rank</th>
                 <th>Artist</th>
                 <th>Genre</th>
-                <th>Followers</th>
+                <th>Popularity</th>
                 <th>URL</th>
                 <th>Top Track</th>
             </tr>
