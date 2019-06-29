@@ -76,7 +76,7 @@ function genreListOptions(gList) {
 function genreSearch(query, type, access_tk) {
     let headers = new Headers();
     headers.append('Authorization', `${access_tk}`);
-    let url = `https://api.spotify.com/v1/search?query=${query}&type=${type}&market=US&offset=0&limit=20`;
+    let url = `https://api.spotify.com/v1/search?q=%20genre:%22${query}%22&type=${type}`;
     fetch(url, {
         method: 'GET',
         headers: new Headers({
@@ -89,11 +89,12 @@ function genreSearch(query, type, access_tk) {
             console.log(`shit, this didn't work!`);
         }
     }).then(function (text) {
-        // getTopTracks(text, access_tk);
         displayArtistData(text);
-        console.log(text);
+        console.log(text.artists.items[0].name);
     });
 }
+
+
 
 function getSongData(query, type, access_tk) {
     let headers = new Headers();
@@ -178,13 +179,15 @@ function displayArtistData(text) {
         <tr>
             <td>${i+1}</td>
             <td>${text.artists.items[i].name}</td>
-            <td>${text.artists.items[i].genres[i]}</td>
-            <td>${text.artists.items[i].followers.total.toLocaleString()}</td>
+            <td>${text.artists.items[i].genres[0]}</td>
+            <td>${text.artists.items[i].popularity}</td>
             <td><a href=${text.artists.items[i].external_urls.spotify} target="_blank">Spotify</a></td>
         </tr>
         `);
     }
 }
+
+{/* <td>${text.artists.items[i].followers.total.toLocaleString()}</td> */}
 
 // GENRE SORT TESTS
 
@@ -194,15 +197,11 @@ const mainApp = (clientID) => {
     getGenres(userData.access_token);
     $('main').append(`<div class="results">
         </div>`);
-    $('input[type=submit]').on('click', function (event) {
-        event.preventDefault();
-        let songSearch = $('input[type=text]').val();
-        getSongData(songSearch, `artist`, userData.access_token);
 
-    });
-
-    $('input[type=submit, id=]').on('click', function(event) {
+    $('input[type=submit').on('click', function(event) {
         event.preventDefault();
+        let genreSearchInput = $('input[type=text]').val();
+        genreSearch(genreSearchInput, `artist`, userData.access_token);
 
     });
 };
