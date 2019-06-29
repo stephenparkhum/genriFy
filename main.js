@@ -108,7 +108,6 @@ function sortGenres(text) {
         <tr>
             <td>${i+1}</td>
             <td>${text[i].name}</td>
-            <td>${text[i].genres[0]}</td>
             <td>${text[i].popularity}</td>
             <td><a href=${text[i].external_urls.spotify} target="_blank">Spotify</a></td>
         </tr>
@@ -173,7 +172,6 @@ const htmlTableInit = () => {
             <tr>
                 <th>Rank</th>
                 <th>Artist</th>
-                <th>Genre</th>
                 <th>Popularity</th>
                 <th>URL</th>
                 <th>Top Track</th>
