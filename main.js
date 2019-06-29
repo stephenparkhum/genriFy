@@ -20,6 +20,7 @@ function getHashParams() {
 }
 
 const userAuthorize = (clientId) => {
+    // let redirect = `http://localhost:5500`;
     let redirect = `https://stephenparkhum.github.io/genriFy/`;
     let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
     $('.spotify-sign-btn').on('click', function () {
@@ -90,14 +91,13 @@ function genreSearch(query, type, access_tk) {
         }
     }).then(function (text) {
         let popList = [];
-        // displayArtistData(text);
         for (let i = 0; i < text.artists.items.length; i++) {
             popList.push(text.artists.items[i]);
         }
         
         popList.sort((a, b) => (a.popularity > b.popularity) ? -1 : 1);
         sortGenres(popList);
-        console.log(text);
+        // console.log(text);
     });
 }
 
