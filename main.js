@@ -58,9 +58,18 @@ function getGenres(access_tk) {
         }
     }).then(text => {
         for (let i = 0; i < text.genres.length; i++) {
-            genreList.push(text.genres[i]);
+            genreList.push(text.genres[i].toUpperCase());
         }
+        genreListOptions(genreList);
     });
+}
+
+function genreListOptions(gList) {
+    for (let i = 0; i < gList.length; i++) {
+        $('select').append(`
+            <option value="${gList[i]}">${gList[i]}</option>
+        `);
+    }
 }
 
 function genreFilter(genre, genre_list) {
@@ -88,7 +97,7 @@ function getSongData(query, type, access_tk) {
             console.log(`shit, this didn't work!`);
         }
     }).then(function (text) {
-        getTopTracks(text, access_tk);
+        // getTopTracks(text, access_tk);
         displayArtistData(text);
         console.log(text);
     });
@@ -116,11 +125,8 @@ function getTopTracks(artist, access_tk) {
         //     console.log(`${text.tracks[i].name} & ${text.tracks[i].popularity}`);
         // }
         displayTopTrack(text);
-        console.log(text.tracks);
     });
 }
-
-
 
 
 // HTML DISPLAY & FORMATTING
@@ -154,7 +160,6 @@ function displayTopTrack(track) {
 function displayArtistData(text) {
     htmlTableInit(text);
     for (let i = 0; i < text.artists.items.length; i++) {
-        getTopTracks();
         $('.results-artists').append(`
         <tr>
             <td>${i+1}</td>
@@ -162,12 +167,10 @@ function displayArtistData(text) {
             <td>${text.artists.items[i].genres[i]}</td>
             <td>${text.artists.items[i].followers.total.toLocaleString()}</td>
             <td><a href=${text.artists.items[i].external_urls.spotify} target="_blank">Spotify</a></td>
-            <td><a href="#" target="_blank" class="top-track-link"></a></td>
         </tr>
         `);
     }
 }
-
 
 // GENRE SORT TESTS
 
@@ -181,7 +184,6 @@ const mainApp = (clientID) => {
         event.preventDefault();
         let songSearch = $('input[type=text]').val();
         getSongData(songSearch, `artist`, userData.access_token);
-        console.log(genreList);
 
     });
 };
