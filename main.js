@@ -61,6 +61,7 @@ function getGenres(access_tk) {
         for (let i = 0; i < text.genres.length; i++) {
             genreList.push(text.genres[i].toUpperCase());
         }
+        console.log(genreList);
         genreListOptions(genreList);
     });
 }
