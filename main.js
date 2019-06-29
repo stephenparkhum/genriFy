@@ -20,12 +20,12 @@ function getHashParams() {
 }
 
 const userAuthorize = (clientId) => {
-    let redirect = `http://localhost:5500`;
-    // let redirect = `https://stephenparkhum.github.io/genriFy/`;
+    // let redirect = `http://localhost:5500`;
+    let redirect = `https://stephenparkhum.github.io/genriFy/`;
     let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
     $('.spotify-sign-btn').on('click', function () {
         $('.auth-link').attr('href', url);
-        console.log(url);
+        // console.log(url);
     });
 };
 
@@ -61,7 +61,7 @@ function getGenres(access_tk) {
         for (let i = 0; i < text.genres.length; i++) {
             genreList.push(text.genres[i].toUpperCase());
         }
-        console.log(genreList);
+        // console.log(genreList);
         genreListOptions(genreList);
     });
 }
@@ -98,7 +98,7 @@ function genreSearch(query, type, access_tk) {
         
         popList.sort((a, b) => (a.popularity > b.popularity) ? -1 : 1);
         sortGenres(popList);
-        console.log(text);
+        // console.log(text);
     });
 }
 
@@ -135,7 +135,7 @@ function getSongData(query, type, access_tk) {
         }
     }).then(function (text) {
         displayArtistData(text);
-        console.log(text);
+        // console.log(text);
     });
 }
 
