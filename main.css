@@ -100,6 +100,11 @@ body {
         cursor: pointer;
     }
 
+    input[type="submit"] {
+        height: 55px;
+        text-align: center;
+    }
+
     table a {
         margin-left: 0;
         text-decoration: none;
@@ -107,8 +112,8 @@ body {
     }
 
     input[type="submit"]:hover {
-        background-color: white;
-        color: var(--dk-p);
+        background-color: var(--lt-p);
+        color: white;
         cursor: pointer;
     }
 
@@ -143,6 +148,10 @@ body {
 
     .results img {
         width: 225px;
+    }
+
+    i:hover {
+        color: var(--lt-p);
     }
 
     .top-track-link {

@@ -20,8 +20,8 @@ function getHashParams() {
 }
 
 const userAuthorize = (clientId) => {
-    // let redirect = `http://localhost:5500`;
-    let redirect = `https://stephenparkhum.github.io/genriFy/`;
+    let redirect = `http://localhost:5500`;
+    // let redirect = `https://stephenparkhum.github.io/genriFy/`;
     let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
     $('.spotify-sign-btn').on('click', function () {
         $('.auth-link').attr('href', url);
@@ -62,16 +62,7 @@ function getGenres(access_tk) {
             genreList.push(text.genres[i].toUpperCase());
         }
         // console.log(genreList);
-        genreListOptions(genreList);
     });
-}
-
-function genreListOptions(gList) {
-    for (let i = 0; i < gList.length; i++) {
-        $('select').append(`
-            <option value="${gList[i]}">${gList[i]}</option>
-        `);
-    }
 }
 
 // SEARCH BY GENRE
@@ -91,25 +82,32 @@ function genreSearch(query, type, access_tk) {
             console.log(`shit, this didn't work!`);
         }
     }).then(function (text) {
-        let popList = [];
-        for (let i = 0; i < text.artists.items.length; i++) {
-            popList.push(text.artists.items[i]);
+        if (text.artists.total > 0) {
+            let popList = [];
+            for (let i = 0; i < text.artists.items.length; i++) {
+                popList.push(text.artists.items[i]);
+                console.log(text.artists.items[i].id);
+            }
+            popList.sort((a, b) => (a.popularity > b.popularity) ? -1 : 1);
+            sortByGenre(popList);
+            console.log(text);
+            
+        } else {
+            $('.results').empty();
+            $('.results').append(`<p>We're sorry! There are no artists matching that <em>exact</em> genre.</p>`);
         }
         
-        popList.sort((a, b) => (a.popularity > b.popularity) ? -1 : 1);
-        sortGenres(popList);
-        // console.log(text);
     });
 }
 
-function sortGenres(text) {
+function sortByGenre(text) {
     htmlTableInit();
     for (let i = 0; i < text.length; i++) {
         $('.results-artists').append(`
         <tr>
             <td>${i+1}</td>
             <td>${text[i].name}</td>
-            <td>${text[i].popularity}</td>
+            <td>${text[i].followers.total.toLocaleString()}</td>
             <td><a href=${text[i].external_urls.spotify} target="_blank">Spotify</a></td>
         </tr>
         `);
@@ -118,26 +116,26 @@ function sortGenres(text) {
 
 
 
-function getSongData(query, type, access_tk) {
-    let headers = new Headers();
-    headers.append('Authorization', `${access_tk}`);
-    let url = `https://api.spotify.com/v1/search?query=${query}&type=${type}&market=US&offset=0&limit=50`;
-    fetch(url, {
-        method: 'GET',
-        headers: new Headers({
-            'Authorization': `Bearer ${access_tk}`,
-        })
-    }).then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            console.log(`shit, this didn't work!`);
-        }
-    }).then(function (text) {
-        displayArtistData(text);
-        // console.log(text);
-    });
-}
+// function getSongData(query, type, access_tk) {
+//     let headers = new Headers();
+//     headers.append('Authorization', `${access_tk}`);
+//     let url = `https://api.spotify.com/v1/search?query=${query}&type=${type}&market=US&offset=0&limit=50`;
+//     fetch(url, {
+//         method: 'GET',
+//         headers: new Headers({
+//             'Authorization': `Bearer ${access_tk}`,
+//         })
+//     }).then(response => {
+//         if (response.ok) {
+//             return response.json();
+//         } else {
+//             console.log(`shit, this didn't work!`);
+//         }
+//     }).then(function (text) {
+        
+//         displayArtistData(text);
+//     });
+// }
 
 
 function getTopTracks(artist, access_tk) {
@@ -173,9 +171,8 @@ const htmlTableInit = () => {
             <tr>
                 <th>Rank</th>
                 <th>Artist</th>
-                <th>Popularity</th>
+                <th>Followers</th>
                 <th>URL</th>
-                <th>Top Track</th>
             </tr>
         </thead>
         <tbody class="results-artists">
@@ -186,7 +183,7 @@ const htmlTableInit = () => {
 
 function displayTopTrack(track) {
     $('.top-track-link').text(`${track.tracks[0].name}`);
-    $('.top-track-link').attr(`href`,`${track.tracks[0].external_urls.spotify}`);
+    $('.top-track-link').attr(`href`, `${track.tracks[0].external_urls.spotify}`);
 }
 
 function displayArtistData(text) {
@@ -204,7 +201,8 @@ function displayArtistData(text) {
     }
 }
 
-{/* <td>${text.artists.items[i].followers.total.toLocaleString()}</td> */}
+{
+    /* <td>${text.artists.items[i].followers.total.toLocaleString()}</td> */ }
 
 // GENRE SORT TESTS
 
@@ -214,8 +212,8 @@ const mainApp = (clientID) => {
     getGenres(userData.access_token);
     $('main').append(`<div class="results">
         </div>`);
-
-    $('input[type=submit').on('click', function(event) {
+    $('.results').append('<p>Search for a genre here!<i class="fas fa-arrow-up" style="padding-left: 15px; font-size: 30px;"></i></p>');
+    $('input[type=submit').on('click', function (event) {
         event.preventDefault();
         let genreSearchInput = $('input[type=text]').val();
         genreSearch(genreSearchInput, `artist`, userData.access_token);
