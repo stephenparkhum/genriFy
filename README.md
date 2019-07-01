@@ -12,4 +12,3 @@ genriFy is an app that allows users to find the top artists in a specific genre 
 
 ## Design
 * Adobe XD
-
