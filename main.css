@@ -1,10 +1,7 @@
 :root {
     --black: #10151C;
-    /* --md-p: #390859;
-    --dk-p: #170126;
-    --lt-p: #9144A6;
-    --xlt-p: #EAACF2; */
-    --grn: #6DA69B;
+    --blue: #0F4880;
+    --grn: #068458;
 }
 
 * {
@@ -35,7 +32,7 @@ body {
     }
 
     #landing-overlay h1 span {
-        color: var(--grn);
+        color: var(--blue);
     }
 
     #landing-overlay p {
@@ -46,7 +43,7 @@ body {
     }
 
     .landing-btn {
-        background-color: var(--grn);
+        background-color: var(--blue);
         color: white;
         font-weight: 700;
         font-size: 25px;
@@ -83,7 +80,7 @@ body {
     }
 
     header span {
-        color: var(--grn);
+        color: var(--blue);
     }
 
     .title-light {
@@ -97,18 +94,13 @@ body {
 
     input[type="text"] {
         background-color: white;
-        color: var(--grn);
-        border: 1px solid var(--grn);
+        color: var(--blue);
+        border: 1px solid var(--blue);
         border-radius: 10px;
         width: 40%;
         font-size: 20px;
         padding: 15px;
         font-weight: 300;
-    }
-
-    select option {
-        background-color: white;
-        border-radius: 10px;
     }
 
     input::placeholder {
@@ -118,11 +110,12 @@ body {
     input[type="submit"], 
     table a {
         margin-left: 20px;
-        font-size: 15px;
+        font-size: 20px;
         padding: 10px;
-        background-color: var(--grn);
+        background-color: var(--blue);
         color: white;
         border-radius: 10px;
+        border: none;
         cursor: pointer;
     }
 
@@ -137,6 +130,10 @@ body {
         cursor: pointer;
     }
 
+    table th {
+        font-size: 20px;
+    }
+
     input[type="submit"]:hover {
         background-color: var(--grn);
         color: white;
@@ -147,8 +144,8 @@ body {
         color: var(--black);
         padding: 5px 20px;
         width: 90%;
-        margin: 10px 0px;
-        border: 1px solid var(--grn);
+        margin: 50px 0px;
+        border: 1px solid var(--blue);
         border-radius: 10px;
     }
 
@@ -165,7 +162,7 @@ body {
     .results-table th {
         padding: 20px 0;
         font-weight: 700;
-        border-bottom: 1px solid var(--grn);
+        border-bottom: 1px solid var(--blue);
     }
 
     .results h1 {
@@ -177,19 +174,7 @@ body {
     }
 
     i:hover {
-        color: var(--grn);
-    }
-
-    .top-track-link {
-        background-color: var(--black);
-        color: white;
-        cursor: pointer;
-        padding: 15px;
-        
-    }
-
-    .top-track-link:hover {
-        border-bottom: 5px solid #1DB954;
+        color: var(--blue);
     }
 
     .spotify-sign-btn {
@@ -209,18 +194,26 @@ body {
         padding: 10px;
         margin: 0;
         width: 100%;
-        height: 50px;
-        background-color: var(--grn);
+        height: 40px;
+        background-color: var(--blue);
         position: fixed;
         bottom: 0;
         left: 0;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
     }
 
     footer p {
-        font-weight: 300;
+        font-weight: 400;
+        padding: 0;
+        margin: 0;
+        align-self: center;
+    }
+
+    footer a {
+        font-weight: 400;
+        color: white;
     }
 
     /* GITHUB DIV */
@@ -231,7 +224,7 @@ body {
         align-items: center;
         border: none;
         border-radius: 10px;
-        background-color: var(--grn);
+        background-color: var(--blue);
         color: black;
         width: 55px;
         height: 15%;
@@ -252,6 +245,6 @@ body {
     }
 
     .gh-link i:hover {
-        color: var(--black);
+        color: #068458;
     }
 }
