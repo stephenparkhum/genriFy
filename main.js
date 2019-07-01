@@ -90,12 +90,12 @@ function genreSearch(query, type, access_tk) {
             popList.sort((a, b) => (a.popularity > b.popularity) ? -1 : 1);
             sortByGenre(popList);
             // console.log(text);
-            
+
         } else {
             $('.results').empty();
             $('.results').append(`<p>We're sorry! There are no artists matching that <em>exact</em> genre.</p>`);
         }
-        
+
     });
 }
 
@@ -105,7 +105,7 @@ function sortByGenre(text) {
         $('.results-artists').append(`
         <tr>
             <td>${i+1}</td>
-            <td>${text[i].name}</td>
+            <td><a href="#" class="open">${text[i].name}</a></td>
             <td>${text[i].followers.total.toLocaleString()}</td>
             <td><a href=${text[i].external_urls.spotify} target="_blank">Spotify</a></td>
         </tr>
@@ -131,7 +131,7 @@ function sortByGenre(text) {
 //             console.log(`shit, this didn't work!`);
 //         }
 //     }).then(function (text) {
-        
+
 //         displayArtistData(text);
 //     });
 // }
@@ -185,23 +185,31 @@ function displayTopTrack(track) {
     $('.top-track-link').attr(`href`, `${track.tracks[0].external_urls.spotify}`);
 }
 
-function displayArtistData(text) {
-    htmlTableInit(text);
-    for (let i = 0; i < text.artists.items.length; i++) {
-        $('.results-artists').append(`
-        <tr>
-            <td>${i+1}</td>
-            <td>${text.artists.items[i].name}</td>
-            <td>${text.artists.items[i].genres[0]}</td>
-            <td>${text.artists.items[i].popularity}</td>
-            <td><a href=${text.artists.items[i].external_urls.spotify} target="_blank">Spotify</a></td>
-        </tr>
-        `);
-    }
+// ARTIST POPUP
+
+function artistPopup() {
+    $(document).on("click", ".open", function (event) {
+        $(".popup-overlay, .popup-content").addClass("active");
+        artistPopupFormatting(event.target);
+        console.log($(event.target).text());
+    });
+
+    //removes the "active" class to .popup and .popup-content when the "Close" button is clicked 
+    $(".close, .popup-overlay").on("click", function () {
+        $(".popup-overlay, .popup-content").removeClass("active");
+    });
 }
 
-{
-    /* <td>${text.artists.items[i].followers.total.toLocaleString()}</td> */ }
+function artistPopupFormatting(text) {
+    $('.pop-content').find('h2').text(`${$(text.target).text()}`);
+}
+
+artistPopup();
+
+
+
+
+/* <td>${text.artists.items[i].followers.total.toLocaleString()}</td> */
 
 // GENRE SORT TESTS
 
