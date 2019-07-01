@@ -13,6 +13,9 @@
 <body>
     <header role="header">
         <h1>genriFy</h1>
+        <a href="#" class="auth-link">
+            <button class="spotify-sign-btn">Spotify Sign-In</button>
+        </a>
     </header>
     <main role="main">
         <div id="intro-popup" class="hidden">
@@ -24,18 +27,12 @@
             <p>Try it out now!</p>
             <p><small>Created using Spotify's Web API</small></p>
         </div>
-            <a href="#" class="auth-link">
-                <button class="spotify-sign-btn">Spotify Sign-In</button>
-            </a>
         <div class="search">
             <form id="search-bar">
-                <!-- <input type="text" name="genre-search" id="genre-search" placeholder="Artist Search">
-                <select name="genre-select" id="genre-select"></select> -->
-                <!-- <input type="submit" value="SEARCH"> -->
             </form>
             <form id="genre-search">
                 <input type="text" name="genre" id="genre" placeholder="Genre Search">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Search">
             </form>
         </div>
     </main>

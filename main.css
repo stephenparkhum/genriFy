@@ -23,11 +23,20 @@ body {
 @media only screen and (min-width: 300px) {
     header {
         color: var(--black);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
     }
 
     header h1 {
         color: var(--black);
         font-weight: 300;
+    }
+
+    header a {
+        align-self: center;
+        padding-left: 25px;
+        color: var(--black);
     }
 
     .title-light {
@@ -138,7 +147,7 @@ body {
 
     .results-table th {
         padding: 20px 0;
-        font-weight: 300;
+        font-weight: 700;
         border-bottom: 1px solid var(--xlt-p);
     }
 
@@ -168,7 +177,8 @@ body {
 
     .spotify-sign-btn {
         background-color: #1DB954;
-        color: white;
+        color: var(--black);
+        font-weight: 700;
         font-size: 12px;
         padding: 10px;
         margin: 10px 0px;

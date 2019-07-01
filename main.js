@@ -55,13 +55,12 @@ function getGenres(access_tk) {
         if (response.ok) {
             return response.json();
         } else {
-            console.log(`shit, this didn't work!`);
+            console.log(`The 'getGenres' function is not working!`);
         }
     }).then(text => {
         for (let i = 0; i < text.genres.length; i++) {
             genreList.push(text.genres[i].toUpperCase());
         }
-        // console.log(genreList);
     });
 }
 
@@ -79,7 +78,7 @@ function genreSearch(query, type, access_tk) {
         if (response.ok) {
             return response.json();
         } else {
-            console.log(`shit, this didn't work!`);
+            console.log(`The 'genreSearch' function is not working!`);
         }
     }).then(function (text) {
         if (text.artists.total > 0) {
@@ -89,7 +88,6 @@ function genreSearch(query, type, access_tk) {
             }
             popList.sort((a, b) => (a.popularity > b.popularity) ? -1 : 1);
             sortByGenre(popList);
-            // console.log(text);
             
         } else {
             $('.results').empty();
@@ -171,7 +169,7 @@ const htmlTableInit = () => {
                 <th>Rank</th>
                 <th>Artist</th>
                 <th>Followers</th>
-                <th>URL</th>
+                <th>Profile</th>
             </tr>
         </thead>
         <tbody class="results-artists">
@@ -200,8 +198,6 @@ function displayArtistData(text) {
     }
 }
 
-{
-    /* <td>${text.artists.items[i].followers.total.toLocaleString()}</td> */ }
 
 // GENRE SORT TESTS
 
