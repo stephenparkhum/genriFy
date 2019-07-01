@@ -20,8 +20,8 @@ function getHashParams() {
 }
 
 const userAuthorize = (clientId) => {
-    // let redirect = `http://localhost:5500`;
-    let redirect = `https://stephenparkhum.github.io/genriFy/`;
+    let redirect = `http://localhost:5500`;
+    // let redirect = `https://stephenparkhum.github.io/genriFy/`;
     let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
     $('.spotify-sign-btn').on('click', function () {
         $('.auth-link').attr('href', url);
@@ -29,17 +29,17 @@ const userAuthorize = (clientId) => {
     });
 };
 
-function getUserData(user) {
-    fetch(`https://api.spotify.com/v1/me`).then(response => {
-            if (response.ok) {
-                // console.log(response.json());
-                displayUserData(response.json());
-                return response.json();
+// function getUserData(user) {
+//     fetch(`https://api.spotify.com/v1/me`).then(response => {
+//             if (response.ok) {
+//                 // console.log(response.json());
+//                 displayUserData(response.json());
+//                 return response.json();
 
-            }
-        })
-        .then(responseJson => displayUserData(responseJson));
-}
+//             }
+//         })
+//         .then(responseJson => displayUserData(responseJson));
+// }
 
 
 function getGenres(access_tk) {
@@ -190,8 +190,9 @@ function displayTopTrack(track) {
 function artistPopup() {
     $(document).on("click", ".open", function (event) {
         $(".popup-overlay, .popup-content").addClass("active");
-        artistPopupFormatting(event.target);
-        console.log($(event.target).text());
+        let artistName = $(event.target).text();
+        artistPopupFormatting(artistName);
+        console.log(artistName);
     });
 
     //removes the "active" class to .popup and .popup-content when the "Close" button is clicked 
@@ -201,7 +202,11 @@ function artistPopup() {
 }
 
 function artistPopupFormatting(text) {
-    $('.pop-content').find('h2').text(`${$(text.target).text()}`);
+    $(`.popup-content`).empty();
+    $(`.popup-content`).append(`
+        <h2>${text}</h2>
+        <button class="close">Close</button>
+    `);
 }
 
 artistPopup();
@@ -216,7 +221,7 @@ artistPopup();
 const mainApp = (clientID) => {
     userAuthorize(clientID);
     let userData = getHashParams();
-    getGenres(userData.access_token);
+    // getGenres(userData.access_token);
     $('main').append(`<div class="results">
         </div>`);
     $('.results').append('<p>Search for a genre here!<i class="fas fa-arrow-up" style="padding-left: 15px; font-size: 30px;"></i></p>');
