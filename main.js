@@ -5,9 +5,19 @@
 // SPOTIFY VERSION
 
 const CLIENT_ID = `b8610b1c7d8d4cd49648964d156983a4`;
-
-
 let genreList = [];
+
+
+// LANDING PAGE
+function hideLandingPage() {
+    $('.landing-btn').on('click', function() {
+        $('#landing-overlay').remove();
+        $('header').show();
+        $('main').show();
+    });
+}
+
+hideLandingPage();
 
 function getHashParams() {
     var hashParams = {};
@@ -155,7 +165,6 @@ function getTopTracks(artist, access_tk) {
         displayTopTrack(text);
     });
 }
-
 
 // HTML DISPLAY & FORMATTING
 // These functions handle displaying the artist's data in HTML format

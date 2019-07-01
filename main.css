@@ -1,9 +1,10 @@
 :root {
-    --black: #0D0D0D;
-    --md-p: #390859;
+    --black: #10151C;
+    /* --md-p: #390859;
     --dk-p: #170126;
     --lt-p: #9144A6;
-    --xlt-p: #EAACF2;
+    --xlt-p: #EAACF2; */
+    --grn: #6DA69B;
 }
 
 * {
@@ -21,11 +22,55 @@ body {
 
 /* DESKTOP */
 @media only screen and (min-width: 300px) {
+    #landing-overlay {
+        text-align: center;
+        position: relative;
+        top: 15rem;
+        transform: translateY(-50%);
+    }
+
+    #landing-overlay h1 {
+        font-weight: 300;
+        font-size: 45px;
+    }
+
+    #landing-overlay h1 span {
+        color: var(--grn);
+    }
+
+    #landing-overlay p {
+        width: 80%;
+        margin: 50px auto 25px auto;
+        font-size: 20px;
+        font-weight: 300;
+    }
+
+    .landing-btn {
+        background-color: var(--grn);
+        color: white;
+        font-weight: 700;
+        font-size: 25px;
+        border: none;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 50px;
+        cursor: pointer;
+    }
+
+    .landing-btn:hover {
+        background-color: rgb(81, 124, 115);
+    }
+
+    main {
+        display: none;
+    }
+
     header {
+        display: none;
         color: var(--black);
-        display: flex;
+        /* display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start; */
     }
 
     header h1 {
@@ -48,40 +93,10 @@ body {
     }
 
 
-    #intro-popup {
-        text-align: center;
-        width: 50%; 
-        position: fixed;
-        top: 400px;
-        left: 400px;
-        border: 2px solid black;
-        border-radius: 10px;
-        background-color: var(--black);
-        color: white;
-    }
-
-    #intro-popup p {
-        margin: 40px;
-    }
-
-    .popup-header i {
-        color: white;
-    }
-
-    form select {
-        font-size: 20px;
-        color: var(--lt-p);
-        border: 1px solid var(--xlt-p);
-        border-radius: 20px;
-        font-weight: 300;
-        height: 55px;
-        background-color: white;
-    }
-
     input[type="text"] {
         background-color: white;
-        color: var(--lt-p);
-        border: 1px solid var(--xlt-p);
+        color: var(--grn);
+        border: 1px solid var(--grn);
         border-radius: 10px;
         width: 40%;
         font-size: 20px;
@@ -103,7 +118,7 @@ body {
         margin-left: 20px;
         font-size: 15px;
         padding: 10px;
-        background-color: var(--md-p);
+        background-color: var(--grn);
         color: white;
         border-radius: 10px;
         cursor: pointer;
@@ -121,7 +136,7 @@ body {
     }
 
     input[type="submit"]:hover {
-        background-color: var(--lt-p);
+        background-color: var(--grn);
         color: white;
         cursor: pointer;
     }
@@ -131,7 +146,7 @@ body {
         padding: 5px 20px;
         width: 90%;
         margin: 10px 0px;
-        border: 1px solid var(--xlt-p);
+        border: 1px solid var(--grn);
         border-radius: 10px;
     }
 
@@ -148,7 +163,7 @@ body {
     .results-table th {
         padding: 20px 0;
         font-weight: 700;
-        border-bottom: 1px solid var(--xlt-p);
+        border-bottom: 1px solid var(--grn);
     }
 
     .results h1 {
@@ -160,7 +175,7 @@ body {
     }
 
     i:hover {
-        color: var(--lt-p);
+        color: var(--grn);
     }
 
     .top-track-link {
