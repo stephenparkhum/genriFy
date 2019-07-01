@@ -30,8 +30,8 @@ function getHashParams() {
 }
 
 const userAuthorize = (clientId) => {
-    let redirect = `http://localhost:5500`;
-    // let redirect = `https://stephenparkhum.github.io/genriFy/`;
+    let redirect = `http://localhost:5500/search.html`;
+    // let redirect = `https://stephenparkhum.github.io/genriFy/search.html`;
     let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
     $('.spotify-sign-btn').on('click', function () {
         $('.auth-link').attr('href', url);
@@ -120,29 +120,6 @@ function sortByGenre(text) {
         `);
     }
 }
-
-
-
-// function getSongData(query, type, access_tk) {
-//     let headers = new Headers();
-//     headers.append('Authorization', `${access_tk}`);
-//     let url = `https://api.spotify.com/v1/search?query=${query}&type=${type}&market=US&offset=0&limit=50`;
-//     fetch(url, {
-//         method: 'GET',
-//         headers: new Headers({
-//             'Authorization': `Bearer ${access_tk}`,
-//         })
-//     }).then(response => {
-//         if (response.ok) {
-//             return response.json();
-//         } else {
-//             console.log(`shit, this didn't work!`);
-//         }
-//     }).then(function (text) {
-        
-//         displayArtistData(text);
-//     });
-// }
 
 
 function getTopTracks(artist, access_tk) {
