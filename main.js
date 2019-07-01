@@ -193,7 +193,7 @@ const mainApp = (clientID) => {
     getGenres(userData.access_token);
     $('main').append(`<div class="results">
         </div>`);
-    $('.results').append('<p>Search for a genre here!<i class="fas fa-arrow-up" style="padding-left: 15px; font-size: 30px;"></i></p>');
+    $('.results').append('<p>Sign in to Spotify then search for a genre here!<i class="fas fa-arrow-up" style="padding-left: 15px; font-size: 30px;"></i></p>');
     $('input[type=submit').on('click', function (event) {
         event.preventDefault();
         let genreSearchInput = $('input[type=text]').val();
