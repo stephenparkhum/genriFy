@@ -355,9 +355,12 @@ body {
         color: white;
         border-radius: 10px;
         border: none;
+        height: 55px;
+        text-align: center;
         -webkit-appearance: none;
+        appearance: none;
     }
-
+    
     table a {
         margin-left: 20px;
         font-size: 15px;
@@ -369,11 +372,7 @@ body {
         cursor: pointer;
     }
 
-    input[type="submit"] {
-        height: 55px;
-        text-align: center;
-        -webkit-appearance: none;
-    }
+    
 
     table a {
         margin-left: 0;
