@@ -355,7 +355,7 @@ body {
         color: white;
         border-radius: 10px;
         border: none;
-        cursor: pointer;
+        -webkit-appearance: none;
     }
 
     table a {
