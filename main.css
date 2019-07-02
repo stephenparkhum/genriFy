@@ -132,7 +132,7 @@ body {
 
     table a {
         margin-left: 20px;
-        font-size: 20px;
+        font-size: 18px;
         padding: 10px;
         background-color: var(--blue);
         color: white;
@@ -277,7 +277,7 @@ body {
     }
 
     .gh-link i:hover {
-        color: #068458;
+        color: var(--grn);
     }
 }
 
@@ -360,8 +360,8 @@ body {
 
     table a {
         margin-left: 20px;
-        font-size: 20px;
-        padding: 10px;
+        font-size: 15px;
+        padding: 5px;
         background-color: var(--blue);
         color: white;
         border-radius: 10px;
@@ -392,7 +392,7 @@ body {
 
     .results {
         color: var(--black);
-        padding: 5px 20px;
+        padding: 20px 10px;
         width: 100%;
         margin: 25px 0px;
         border: 1px solid var(--blue);
@@ -418,18 +418,6 @@ body {
         border-bottom: 1px solid var(--blue);
         text-transform: uppercase;
         text-align: left;
-    }
-
-    .results h1 {
-        font-weight: 300;
-    }
-
-    .results img {
-        width: 225px;
-    }
-
-    i:hover {
-        color: var(--blue);
     }
 
     .spotify-sign-btn {
