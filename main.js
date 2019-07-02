@@ -164,7 +164,7 @@ const mainApp = (clientID) => {
     $('main').append(`<div class="results">
         </div>`);
     $('.results').append('<p>Sign in to Spotify then search for a genre here!<i class="fas fa-arrow-up" style="padding-left: 15px; font-size: 30px;"></i></p>');
-    $('input[type=submit').on('click', function (event) {
+    $('#genre-submit').on('click touchend', function (event) {
         event.preventDefault();
         let genreSearchInput = $('input[type=text]').val();
         genreSearch(genreSearchInput, `artist`, userData.access_token);
