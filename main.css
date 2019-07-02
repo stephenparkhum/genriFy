@@ -112,6 +112,8 @@ body {
         font-size: 20px;
         padding: 15px;
         font-weight: 300;
+        -webkit-appearance: none;
+        appearance: none;
     }
 
     input::placeholder {
@@ -130,6 +132,8 @@ body {
         cursor: pointer;
         height: 55px;
         text-align: center;
+        -webkit-appearance: none;
+        appearance: none;
     }
 
     table a {

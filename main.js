@@ -1,8 +1,5 @@
 'use strict';
-
-
-
-// SPOTIFY VERSION
+// genriFy 
 
 const CLIENT_ID = `b8610b1c7d8d4cd49648964d156983a4`;
 
@@ -16,6 +13,7 @@ function hideLandingPage() {
     });
 }
 
+// USER AUTHORIZIATION
 function getHashParams() {
     var hashParams = {};
     var e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -35,18 +33,7 @@ const userAuthorize = (clientId) => {
     });
 };
 
-function getUserData(user) {
-    fetch(`https://api.spotify.com/v1/me`).then(response => {
-            if (response.ok) {
-                displayUserData(response.json());
-                return response.json();
-
-            }
-        })
-        .then(responseJson => displayUserData(responseJson));
-}
-
-// SEARCH BY GENRE
+// GENRE SEARCHES
 function genreSearch(query, type, access_tk) {
     let headers = new Headers();
     headers.append('Authorization', `${access_tk}`);
@@ -60,7 +47,10 @@ function genreSearch(query, type, access_tk) {
         if (response.ok) {
             return response.json();
         } else {
-            console.log(`The 'genreSearch' function is not working!`);
+            $(`.results`).empty();
+            $(`.results`).append(`
+            <p>Please sign in to <span class="spotify-color">Spotify</span> before searching!</p>
+            `);
         }
     }).then(function (text) {
         if (text.artists.total > 0) {
@@ -75,7 +65,10 @@ function genreSearch(query, type, access_tk) {
             $('.results').empty();
             $('.results').append(`<p>We're sorry! There are no artists matching that <em>exact</em> genre.</p>`);
         }
-        
+    }).catch(error => {
+        if (error.status == 401) {
+            console.log(`You haven't logged in to Spotify yet!`);
+        }
     });
 }
 
@@ -140,6 +133,7 @@ const mainApp = (clientID) => {
         event.preventDefault();
         let genreSearchInput = $('input[type=text]').val();
         genreSearch(genreSearchInput, `artist`, userData.access_token);
+        return false;
 
     });
 };
