@@ -1,3 +1,4 @@
+/* GLOBAL STYLES */
 :root {
     --black: #10151C;
     --blue: #0F4880;
@@ -20,54 +21,54 @@ body {
     color: #1DB954;
 }
 
+#landing-overlay {
+    text-align: center;
+    position: relative;
+    top: 15rem;
+    transform: translateY(-50%);
+}
 
+#landing-overlay h1 {
+    font-weight: 300;
+    font-size: 45px;
+}
+
+#landing-overlay h1 span {
+    color: white;
+}
+
+#landing-overlay p {
+    width: 80%;
+    margin: 50px auto 25px auto;
+    font-size: 25px;
+    font-weight: 400;
+    color: white;
+}
+
+#landing-overlay li {
+    color: white;
+    font-size: 25px;
+}
+
+.landing-btn {
+    background-color: var(--blue);
+    color: white;
+    font-weight: 700;
+    font-size: 25px;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+.landing-btn:hover {
+    background-color: var(--grn);
+}
 
 /* DESKTOP LAYOUT */
-@media only screen and (min-width: 500px) {
-    #landing-overlay {
-        text-align: center;
-        position: relative;
-        top: 15rem;
-        transform: translateY(-50%);
-    }
-
-    #landing-overlay h1 {
-        font-weight: 300;
-        font-size: 45px;
-    }
-
-    #landing-overlay h1 span {
-        color: white;
-    }
-
-    #landing-overlay p {
-        width: 80%;
-        margin: 50px auto 25px auto;
-        font-size: 25px;
-        font-weight: 400;
-        color: white;
-    }
-
-    #landing-overlay li {
-        color: white;
-        font-size: 25px;
-    }
-
-    .landing-btn {
-        background-color: var(--blue);
-        color: white;
-        font-weight: 700;
-        font-size: 25px;
-        border: none;
-        border-radius: 10px;
-        padding: 15px;
-        margin-top: 50px;
-        cursor: pointer;
-    }
-
-    .landing-btn:hover {
-        background-color: var(--grn);
-    }
+@media screen and (min-width: 501px) {
+    
 
     header {
         color: var(--black);
@@ -281,61 +282,23 @@ body {
 }
 
 /* MOBILE LAYOUT */
-@media only screen and (min-width: 200px) {
-    #landing-overlay {
-        text-align: center;
-        position: relative;
-        top: 15rem;
-        transform: translateY(-50%);
+@media screen and (min-width: 200px) and (max-width: 500px) {
+    body {
+        margin: 10px;
     }
-
-    #landing-overlay h1 {
-        font-weight: 300;
-        font-size: 45px;
-    }
-
-    #landing-overlay h1 span {
-        color: white;
-    }
-
-    #landing-overlay p {
-        width: 80%;
-        margin: 50px auto 25px auto;
-        font-size: 25px;
-        font-weight: 400;
-        color: white;
-    }
-
-    #landing-overlay li {
-        color: white;
-        font-size: 25px;
-    }
-
-    .landing-btn {
-        background-color: var(--blue);
-        color: white;
-        font-weight: 700;
-        font-size: 25px;
-        border: none;
-        border-radius: 10px;
-        padding: 15px;
-        margin-top: 50px;
-        cursor: pointer;
-    }
-
-    .landing-btn:hover {
-        background-color: var(--grn);
-    }
-
     header {
-        color: var(--black);
+        height: 100px;
+        padding: 0;
         display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: 0;
     }
 
     header h1 {
-        color: var(--black);
+        color: var(--white);
         font-weight: 300;
         font-size: 45px;
         text-align: center;
@@ -343,7 +306,7 @@ body {
 
     header a {
         align-self: center;
-        padding-left: 25px;
+        padding: 0;
         color: var(--black);
     }
 
@@ -359,6 +322,13 @@ body {
         display: none;
     }
 
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
 
     input[type="text"] {
         background-color: white;
@@ -366,18 +336,18 @@ body {
         border: 1px solid var(--blue);
         box-shadow: 5px 2px 10px var(--blue);
         border-radius: 10px;
-        width: 40%;
+        width: 100%;
         font-size: 20px;
         padding: 15px;
         font-weight: 300;
     }
 
     input::placeholder {
-        color: var(--lt-p);
+        color: var(--blue);
     }
 
     input[type="submit"] {
-        margin-left: 20px;
+        margin-top: 15px;
         font-size: 20px;
         padding: 10px;
         background-color: var(--blue);
@@ -423,8 +393,8 @@ body {
     .results {
         color: var(--black);
         padding: 5px 20px;
-        width: 90%;
-        margin: 50px 0px;
+        width: 100%;
+        margin: 25px 0px;
         border: 1px solid var(--blue);
         border-radius: 10px;
         background-color: white;
@@ -437,13 +407,17 @@ body {
     }
 
     .results-table td {
-        padding: 30px 30px 30px 0;
+        padding: 10px 0 30px 0;
+        font-size: 14px;
     }
 
     .results-table th {
-        padding: 20px 0;
+        padding: 0 15px 5px 0;
         font-weight: 700;
+        font-size: 15px;
         border-bottom: 1px solid var(--blue);
+        text-transform: uppercase;
+        text-align: left;
     }
 
     .results h1 {
@@ -482,7 +456,7 @@ body {
         padding: 10px;
         margin: 0;
         width: 100%;
-        height: 40px;
+        height: 45px;
         background-color: var(--blue);
         box-shadow: 5px 2px 10px var(--blue);
         position: fixed;
@@ -495,9 +469,9 @@ body {
 
     footer p {
         font-weight: 400;
-        padding: 0;
         margin: 0;
         align-self: center;
+        font-size: 14px;
     }
 
     footer a {
@@ -519,7 +493,8 @@ body {
         width: 55px;
         height: 15%;
         position: fixed;
-        right: -5px;
+        left: -5px;
+        top: 0;
     }
 
     .gh-link a {
@@ -528,7 +503,7 @@ body {
 
     .gh-link i {
         color: white;
-        font-size: 35px;
+        font-size: 30px;
         margin: 0;
         padding: 10px 5px;
         align-self: center;

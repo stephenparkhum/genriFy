@@ -5,7 +5,6 @@
 // SPOTIFY VERSION
 
 const CLIENT_ID = `b8610b1c7d8d4cd49648964d156983a4`;
-let genreList = [];
 
 
 // LANDING PAGE
@@ -30,48 +29,23 @@ function getHashParams() {
 }
 
 const userAuthorize = (clientId) => {
-    // let redirect = `http://localhost:5500/search.html`;
-    let redirect = `https://stephenparkhum.github.io/genriFy/search.html`;
+    let redirect = `http://localhost:5500/search.html`;
+    // let redirect = `https://stephenparkhum.github.io/genriFy/search.html`;
     let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
     $('.spotify-sign-btn').on('click', function () {
         $('.auth-link').attr('href', url);
-        // console.log(url);
     });
 };
 
 function getUserData(user) {
     fetch(`https://api.spotify.com/v1/me`).then(response => {
             if (response.ok) {
-                // console.log(response.json());
                 displayUserData(response.json());
                 return response.json();
 
             }
         })
         .then(responseJson => displayUserData(responseJson));
-}
-
-
-function getGenres(access_tk) {
-    let headers = new Headers();
-    headers.append('Authorization', `${access_tk}`);
-    let url = `https://api.spotify.com/v1/recommendations/available-genre-seeds`;
-    fetch(url, {
-        method: 'GET',
-        headers: new Headers({
-            'Authorization': `Bearer ${access_tk}`,
-        })
-    }).then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            console.log(`The 'getGenres' function is not working!`);
-        }
-    }).then(text => {
-        for (let i = 0; i < text.genres.length; i++) {
-            genreList.push(text.genres[i].toUpperCase());
-        }
-    });
 }
 
 // SEARCH BY GENRE
@@ -155,7 +129,7 @@ const htmlTableInit = () => {
                 <th>Rank</th>
                 <th>Artist</th>
                 <th>Followers</th>
-                <th>Profile</th>
+                <th>Listen</th>
             </tr>
         </thead>
         <tbody class="results-artists">
@@ -184,13 +158,9 @@ function displayArtistData(text) {
     }
 }
 
-
-// GENRE SORT TESTS
-
 const mainApp = (clientID) => {
     userAuthorize(clientID);
     let userData = getHashParams();
-    getGenres(userData.access_token);
     $('main').append(`<div class="results">
         </div>`);
     $('.results').append('<p>Sign in to Spotify then search for a genre here!<i class="fas fa-arrow-up" style="padding-left: 15px; font-size: 30px;"></i></p>');
