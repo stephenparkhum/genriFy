@@ -6,7 +6,7 @@ const CLIENT_ID = `b8610b1c7d8d4cd49648964d156983a4`;
 
 // LANDING PAGE
 function hideLandingPage() {
-    $('.landing-btn').on('click', function() {
+    $('.landing-btn').on('click', function () {
         $('#landing-overlay').remove();
         $('header').show();
         $('main').show();
@@ -60,7 +60,7 @@ function genreSearch(query, type, access_tk) {
             }
             popList.sort((a, b) => (a.popularity > b.popularity) ? -1 : 1);
             sortByGenre(popList);
-            
+
         } else {
             $('.results').empty();
             $('.results').append(`<p>We're sorry! There are no artists matching that <em>exact</em> genre.</p>`);
