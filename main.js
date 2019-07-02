@@ -47,6 +47,7 @@ function genreSearch(query, type, access_tk) {
         if (response.ok) {
             return response.json();
         } else {
+            alert(`This did not work`);
             $(`.results`).empty();
             $(`.results`).append(`
             <p>Please sign in to <span class="spotify-color">Spotify</span> before searching!</p>
