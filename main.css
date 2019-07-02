@@ -372,6 +372,7 @@ body {
     input[type="submit"] {
         height: 55px;
         text-align: center;
+        -webkit-appearance: none;
     }
 
     table a {
