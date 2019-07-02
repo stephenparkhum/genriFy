@@ -360,7 +360,7 @@ body {
         -webkit-appearance: none;
         appearance: none;
     }
-    
+
     table a {
         margin-left: 20px;
         font-size: 15px;
@@ -422,11 +422,11 @@ body {
     }
 
     .spotify-sign-btn {
-        background-color: var(--blue);
+        background-color: var(--grn);
         box-shadow: 5px 2px 10px var(--blue);
         color: white;
         font-weight: 700;
-        font-size: 12px;
+        font-size: 16px;
         padding: 10px;
         border-radius: 10px;
         border: none;
