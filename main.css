@@ -355,6 +355,7 @@ body {
         color: white;
         border-radius: 10px;
         border: none;
+        cursor: pointer;
         height: 55px;
         text-align: center;
         -webkit-appearance: none;
@@ -431,6 +432,7 @@ body {
         border-radius: 10px;
         border: none;
         align-self: center;
+        cursor: pointer;
     }
 
     .spotify-sign-btn:hover {
