@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Spotify, music, search, genre search, genre, spotify app, spotify utility, music search, artist search, spotify genres, spotify genre search">
-    <meta name="description" content="genriFy allows you to search for genres and see which artists are the top played in that genre!">
+    <meta name="keywords"
+        content="Spotify, music, search, genre search, genre, spotify app, spotify utility, music search, artist search, spotify genres, spotify genre search">
+    <meta name="description"
+        content="genriFy allows you to search for genres and see which artists are the top played in that genre!">
     <meta name="author" content="Stephen Parker">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/9e4d7f99de.js"></script>
     <link rel="stylesheet" href="main.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <title>genriFy</title>
 </head>
+
 <body>
-    <div id="landing-overlay">
-        <h1>genri<span>Fy</span></h1>
-        <p>Search for a genre to find the top artists on Spotify!</p>
-        <p>Sign in to <span class="spotify-color">Spotify</span> then search until your heart's content!</p>
-        <button class="landing-btn">Try it now!</button>
-    </div>
+    <section role="landing-page">
+        <div id="landing-overlay">
+            <h1>genri<span>Fy</span></h1>
+            <p>Search for a genre to find the top artists on Spotify!</p>
+            <p>Sign in to <span class="spotify-color">Spotify</span> then search until your heart's content!</p>
+            <button class="landing-btn">Try it now!</button>
+        </div>
+    </section>
+
     <header role="header" class="hidden">
         <h1>genri<span>Fy</span></h1>
         <a href="#" class="auth-link">
@@ -27,24 +35,39 @@
         </a>
     </header>
     <main role="main" class="hidden">
-        <div class="search">
-            <form id="search-bar">
-            </form>
-            <form id="genre-search">
-                <input type="text" name="genre" id="genre" placeholder="Genre Search">
-                <input type="submit" value="Search" id="genre-submit">
-            </form>
-        </div>
-        <div class="gh-link">
-            <a href="https://github.com/stephenparkhum/genriFy" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="http://sparker.work" target="_blank"><i class="fas fa-info-circle"></i></a>
-        </div>
+        <section role="search-section">
+            <div class="search">
+                <form id="search-bar">
+                </form>
+                <form id="genre-search">
+                    <input type="text" name="genre" id="genre" aria-label="Genre" placeholder="Genre Search">
+                    <input type="submit" value="Search" id="genre-submit">
+                </form>
+            </div>
+            <div class="gh-link">
+                <a href="https://github.com/stephenparkhum/genriFy" target="_blank" aria-label="Github Repository"><i
+                        class="fab fa-github"></i></a>
+                <a href="http://sparker.work" target="_blank" aria-label="App Infromation"><i
+                        class="fas fa-info-circle"></i></a>
+            </div>
+        </section>
+        <section>
+            <div class="genre-suggestions">
+                <h3>Genre Suggestions</h3>
+                <ul>
+                    <li><span class="genre-badge">Hard Rock</span></li>
+                    <li><span class="genre-badge">Hip Hop</span></li>
+                    <li><span class="genre-badge">Death Metal</span></li>
+                </ul>
+            </div>
+        </section>
     </main>
     <footer>
         <p>Created by <a href="http://sparker.work" target="_blank">S. Parker</a> using the <a
                 href="https://developer.spotify.com/documentation/web-api/" target="_blank">
-                <span class="spotify-color">Spotify Web API</span></a></p>
+                Spotify Web API</a></p>
     </footer>
     <script src="main.js"></script>
 </body>
+
 </html>

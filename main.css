@@ -67,8 +67,49 @@ body {
 }
 
 /* DESKTOP LAYOUT */
-@media screen and (min-width: 501px) {
-    
+@media screen and (min-width: 770px) {
+    /* BADGES */
+    .genre-badge {
+        background-color: var(--blue);
+        border-radius: 10px;
+        color: white;
+        padding: 10px;
+        margin: 0 0 0 5px;
+        cursor: pointer;
+    }
+
+    .genre-suggestions {
+        position: absolute;
+        background-color: white;
+        border-radius: 10px;
+        width: 20%;
+        height: 15%;
+        right: -0.5%;
+        top: -1%;
+        border: 2px solid var(--blue);
+        box-shadow: 5px 2px 10px var(--blue);
+        margin: 0;
+
+    }
+
+    .genre-suggestions h3 {
+        text-align: left;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .genre-suggestions ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    .genre-suggestions li {
+        font-size: 12px;
+        padding: 5px;
+        display: inline-block;
+        margin: 0;
+    }
+
 
     header {
         color: var(--black);
@@ -128,12 +169,18 @@ body {
         box-shadow: 5px 2px 10px var(--blue);
         color: white;
         border-radius: 10px;
-        border: none;
+        border: 2px solid white;;
         cursor: pointer;
         height: 55px;
         text-align: center;
         -webkit-appearance: none;
         appearance: none;
+    }
+
+    input[type="submit"]:hover {
+        background-color: var(--grn);
+        color: white;
+        cursor: pointer;
     }
 
     table a {
@@ -155,12 +202,6 @@ body {
 
     table th {
         font-size: 20px;
-    }
-
-    input[type="submit"]:hover {
-        background-color: var(--grn);
-        color: white;
-        cursor: pointer;
     }
 
     .results {
@@ -254,7 +295,7 @@ body {
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
-        border: none;
+        border: 2px solid white;
         border-radius: 10px;
         background-color: var(--blue);
         box-shadow: 5px 2px 10px var(--blue);
@@ -283,7 +324,7 @@ body {
 }
 
 /* MOBILE LAYOUT */
-@media screen and (min-width: 200px) and (max-width: 500px) {
+@media screen and (min-width: 200px) and (max-width: 769px) {
     body {
         margin: 10px;
     }
@@ -323,6 +364,38 @@ body {
         display: none;
     }
 
+    .genre-suggestions {
+        display: none;
+    }
+
+    .genre-suggestions h3 {
+        font-size: 17px;
+        text-align: center;
+    }
+
+    .genre-suggestions ul {
+        width: 80%;
+        margin: 0 auto;
+        list-style: none;
+        margin: 0;
+    }
+
+    .genre-suggestions li {
+        font-size: 12px;
+        padding: 5px;
+        display: inline-block;
+        margin: 0;
+    }
+
+    .genre-badge {
+        background-color: var(--blue);
+        border-radius: 10px;
+        color: white;
+        padding: 10px;
+        margin: 0 0 0 5px;
+        cursor: pointer;
+    }
+
     form {
         width: 100%;
         display: flex;
@@ -355,7 +428,7 @@ body {
         box-shadow: 5px 2px 10px var(--blue);
         color: white;
         border-radius: 10px;
-        border: none;
+        border: 1px solid white;
         cursor: pointer;
         height: 55px;
         text-align: center;
@@ -365,8 +438,8 @@ body {
 
     table a {
         margin-left: 20px;
-        font-size: 15px;
-        padding: 5px;
+        font-size: 13px;
+        padding: 7px;
         background-color: var(--blue);
         color: white;
         border-radius: 10px;
@@ -431,7 +504,7 @@ body {
         font-size: 16px;
         padding: 10px;
         border-radius: 10px;
-        border: none;
+        border: 1px solid white;;
         align-self: center;
         cursor: pointer;
     }
@@ -477,7 +550,7 @@ body {
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
-        border: none;
+        border: 1px solid white;
         border-radius: 10px;
         background-color: var(--blue);
         box-shadow: 5px 2px 10px var(--blue);
@@ -486,7 +559,7 @@ body {
         height: 15%;
         position: fixed;
         left: -5px;
-        top: 0;
+        bottom: 50px;
     }
 
     .gh-link a {

@@ -25,8 +25,8 @@ function getHashParams() {
 }
 
 const userAuthorize = (clientId) => {
-    // let redirect = `http://localhost:5500/search.html`;
-    let redirect = `https://stephenparkhum.github.io/genriFy/search.html`;
+    let redirect = `http://localhost:5500/search.html`;
+    // let redirect = `https://stephenparkhum.github.io/genriFy/search.html`;
     let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
     $('.spotify-sign-btn').on('click', function () {
         $('.auth-link').attr('href', url);
@@ -47,11 +47,11 @@ function genreSearch(query, type, access_tk) {
         if (response.ok) {
             return response.json();
         } else {
-            alert(`This did not work`);
             $(`.results`).empty();
             $(`.results`).append(`
             <p>Please sign in to <span class="spotify-color">Spotify</span> before searching!</p>
             `);
+
         }
     }).then(function (text) {
         if (text.artists.total > 0) {
@@ -64,14 +64,33 @@ function genreSearch(query, type, access_tk) {
 
         } else {
             $('.results').empty();
-            $('.results').append(`<p>We're sorry! There are no artists matching that <em>exact</em> genre.</p>`);
+            $('.results').append(`
+            <p>We're sorry! There are no artists matching that <em>exact</em> genre.</p>
+            <h4>Genre Examples:</h4>
+            <p>
+                <span class="genre-badge">Rock</span>
+                <span class="genre-badge">Hip Hop</span>
+                <span class="genre-badge">Portland Metal</span>
+                <span class="genre-badge">NYC</span>
+            </p>
+            `);
         }
     }).catch(error => {
         if (error.status == 401) {
-            console.log(`You haven't logged in to Spotify yet!`);
+            console.log(error.status);
         }
     });
 }
+
+function genreSuggestions(query, type, access_tk) {
+    $(document).on('click', '.genre-badge', function(event){
+        query = $(event.target).text();
+        $('input[type=text]').val(`${query}`);
+        genreSearch(query, type, access_tk);
+        console.log($(event.target).text());
+    });
+}
+
 
 function sortByGenre(text) {
     htmlTableInit();
@@ -130,13 +149,13 @@ const mainApp = (clientID) => {
     $('main').append(`<div class="results">
         </div>`);
     $('.results').append('<p>Sign in to Spotify then search for a genre here!<i class="fas fa-arrow-up" style="padding-left: 15px; font-size: 30px;"></i></p>');
-    $('input[type=submit').on('click', function (event) {
-        event.preventDefault();
+    $('input[type=submit').on('click', false, function () {
         let genreSearchInput = $('input[type=text]').val();
         genreSearch(genreSearchInput, `artist`, userData.access_token);
         return false;
 
     });
+    genreSuggestions(`query`, `artist`, userData.access_token);
 };
 
 
