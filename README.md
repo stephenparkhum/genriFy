@@ -1,7 +1,7 @@
 # genriFy
 [LIVE DEMO](https://stephenparkhum.github.io/genriFy/)
 
-genriFy allows you to find the top artists in a specific genre on Spotify. This is 
+genriFy allows you to find the top artists in a specific genre on Spotify.
 
 ## Goal
 This app stemmed from personal interest in finding out who was the most played, and "most popular" artist within a particular genre on Spotify. 
