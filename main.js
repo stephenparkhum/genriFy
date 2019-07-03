@@ -150,7 +150,6 @@ const mainApp = (clientID) => {
     $('.results').append('<p>Sign in to Spotify then search for a genre here!</p>');
     $(document).ready(function() {
         $('input[type=submit]').on('click', function() {
-            alert('search button is working!');
             let genreSearchInput = $('input[type=text]').val();
             genreSearch(genreSearchInput, `artist`, userData.access_token);
             return false;
