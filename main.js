@@ -145,7 +145,7 @@ const mainApp = (clientID) => {
     hideLandingPage();
     userAuthorize(clientID);
     let userData = getHashParams();
-    $('main').append(`<div class="results">
+    $('main').append(`<div class="results" aria-live="assertive">
         </div>`);
     $('.results').append('<p>Sign in to Spotify then search for a genre here!</p>');
     $(document).ready(function() {
