@@ -559,7 +559,7 @@ body {
         height: 15%;
         position: fixed;
         left: -5px;
-        bottom: 50px;
+        top: 0;
     }
 
     .gh-link a {
