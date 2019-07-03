@@ -155,6 +155,7 @@ body {
         font-weight: 300;
         -webkit-appearance: none;
         appearance: none;
+        cursor: pointer;
     }
 
     input::placeholder {
@@ -180,7 +181,6 @@ body {
     input[type="submit"]:hover {
         background-color: var(--grn);
         color: white;
-        cursor: pointer;
     }
 
     table a {
@@ -244,6 +244,7 @@ body {
 
     .spotify-sign-btn {
         background-color: var(--blue);
+        border: 1px solid white;
         box-shadow: 5px 2px 10px var(--blue);
         color: white;
         font-weight: 700;
@@ -446,8 +447,6 @@ body {
         border: none;
         cursor: pointer;
     }
-
-    
 
     table a {
         margin-left: 0;

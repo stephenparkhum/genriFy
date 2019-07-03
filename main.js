@@ -87,7 +87,6 @@ function genreSuggestions(query, type, access_tk) {
         query = $(event.target).text();
         $('input[type=text]').val(`${query}`);
         genreSearch(query, type, access_tk);
-        console.log($(event.target).text());
     });
 }
 
@@ -149,13 +148,15 @@ const mainApp = (clientID) => {
     $('main').append(`<div class="results">
         </div>`);
     $('.results').append('<p>Sign in to Spotify then search for a genre here!</p>');
-    $('input[type=submit').on('click', function() {
-        alert('search button is working!')
-        let genreSearchInput = $('input[type=text]').val();
-        genreSearch(genreSearchInput, `artist`, userData.access_token);
-        return false;
-
+    $(document).ready(function() {
+        $('input[type=submit]').on('click', function() {
+            alert('search button is working!');
+            let genreSearchInput = $('input[type=text]').val();
+            genreSearch(genreSearchInput, `artist`, userData.access_token);
+            return false;
+        });
     });
+    
     genreSuggestions(`query`, `artist`, userData.access_token);
 };
 
