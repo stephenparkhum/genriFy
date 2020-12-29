@@ -1,9 +1,11 @@
 /* GLOBAL STYLES */
 :root {
-    --black: #10151C;
+    --black: var(--blue);
     --blue: #101726;
     --blue-fade: #2E3D59;
-    --grn: #6D80A6;
+    --purp: #6D80A6;
+    --grn: #49F2C2;
+    --white: #fff;
 }
 
 * {
@@ -31,6 +33,7 @@ body {
 #landing-overlay h1 {
     font-weight: 300;
     font-size: 45px;
+    color: var(--white);
 }
 
 #landing-overlay h1 span {
@@ -51,7 +54,7 @@ body {
 }
 
 .landing-btn {
-    background-color: var(--blue);
+    background-color: var(--black);
     color: white;
     font-weight: 700;
     font-size: 25px;
@@ -63,14 +66,14 @@ body {
 }
 
 .landing-btn:hover {
-    background-color: var(--grn);
+    background-color: var(--purp);
 }
 
 /* DESKTOP LAYOUT */
 @media screen and (min-width: 770px) {
     /* BADGES */
     .genre-badge {
-        background-color: var(--blue);
+        background-color: var(--black);
         border-radius: 10px;
         color: white;
         padding: 10px;
@@ -86,8 +89,8 @@ body {
         height: 15%;
         right: -0.5%;
         top: -1%;
-        border: 2px solid var(--blue);
-        box-shadow: 5px 2px 10px var(--blue);
+        border: 2px solid var(--black);
+        box-shadow: 5px 2px 10px var(--black);
         margin: 0;
 
     }
@@ -130,8 +133,12 @@ body {
         color: var(--black);
     }
 
+    header h1 {
+        color: var(--white);
+    }
+
     header span {
-        color: white;
+        color: var(--grn);
     }
 
     .title-light {
@@ -145,9 +152,9 @@ body {
 
     input[type="text"] {
         background-color: white;
-        color: var(--blue);
-        border: 1px solid var(--blue);
-        box-shadow: 5px 2px 10px var(--blue);
+        color: var(--black);
+        border: 1px solid var(--black);
+        box-shadow: 5px 2px 10px var(--black);
         border-radius: 10px;
         width: 40%;
         font-size: 20px;
@@ -166,8 +173,8 @@ body {
         margin-left: 20px;
         font-size: 20px;
         padding: 10px;
-        background-color: var(--blue);
-        box-shadow: 5px 2px 10px var(--blue);
+        background-color: var(--black);
+        box-shadow: 5px 2px 10px var(--black);
         color: white;
         border-radius: 10px;
         border: 2px solid white;;
@@ -179,7 +186,7 @@ body {
     }
 
     input[type="submit"]:hover {
-        background-color: var(--grn);
+        background-color: var(--purp);
         color: white;
     }
 
@@ -187,7 +194,7 @@ body {
         margin-left: 20px;
         font-size: 18px;
         padding: 10px;
-        background-color: var(--blue);
+        background-color: var(--black);
         color: white;
         border-radius: 10px;
         border: none;
@@ -209,7 +216,7 @@ body {
         padding: 5px 20px;
         width: 90%;
         margin: 50px 0px;
-        border: 1px solid var(--blue);
+        border: 1px solid var(--black);
         border-radius: 10px;
         background-color: white;
     }
@@ -227,7 +234,7 @@ body {
     .results-table th {
         padding: 20px 0;
         font-weight: 700;
-        border-bottom: 1px solid var(--blue);
+        border-bottom: 1px solid var(--black);
     }
 
     .results h1 {
@@ -239,13 +246,13 @@ body {
     }
 
     i:hover {
-        color: var(--blue);
+        color: var(--black);
     }
 
     .spotify-sign-btn {
-        background-color: var(--blue);
+        background-color: var(--black);
         border: 1px solid white;
-        box-shadow: 5px 2px 10px var(--blue);
+        box-shadow: 5px 2px 10px var(--black);
         color: white;
         font-weight: 700;
         font-size: 12px;
@@ -256,7 +263,7 @@ body {
     }
 
     .spotify-sign-btn:hover {
-        background-color: var(--grn);
+        background-color: var(--purp);
         color: white;
         cursor: pointer;
     }
@@ -268,8 +275,8 @@ body {
         margin: 0;
         width: 100%;
         height: 40px;
-        background-color: var(--blue);
-        box-shadow: 5px 2px 10px var(--blue);
+        background-color: var(--black);
+        box-shadow: 5px 2px 10px var(--black);
         position: fixed;
         bottom: 0;
         left: 0;
@@ -298,8 +305,8 @@ body {
         align-items: center;
         border: 2px solid white;
         border-radius: 10px;
-        background-color: var(--blue);
-        box-shadow: 5px 2px 10px var(--blue);
+        background-color: var(--black);
+        box-shadow: 5px 2px 10px var(--black);
         color: black;
         width: 55px;
         height: 20%;
@@ -320,18 +327,18 @@ body {
     }
 
     .gh-link i:hover {
-        color: var(--grn);
+        color: var(--purp);
     }
 
     .popularity {
         border-radius: 50%;
-        background-color: var(--blue);
+        background-color: var(--black);
         color: white;
         padding: 5px;
     } 
 
     .popularity-info {
-        color: var(--blue);
+        color: var(--black);
         margin-left: 7px;
     }
 
@@ -408,7 +415,7 @@ body {
     }
 
     .genre-badge {
-        background-color: var(--blue);
+        background-color: var(--black);
         font-size: 11px;
         border-radius: 10px;
         color: white;
@@ -427,9 +434,9 @@ body {
 
     input[type="text"] {
         background-color: white;
-        color: var(--blue);
-        border: 1px solid var(--blue);
-        box-shadow: 5px 2px 10px var(--blue);
+        color: var(--black);
+        border: 1px solid var(--black);
+        box-shadow: 5px 2px 10px var(--black);
         border-radius: 10px;
         width: 100%;
         font-size: 20px;
@@ -438,15 +445,15 @@ body {
     }
 
     input::placeholder {
-        color: var(--blue);
+        color: var(--black);
     }
 
     input[type="submit"] {
         margin-top: 15px;
         font-size: 20px;
         padding: 10px;
-        background-color: var(--blue);
-        box-shadow: 5px 2px 10px var(--blue);
+        background-color: var(--black);
+        box-shadow: 5px 2px 10px var(--black);
         color: white;
         border-radius: 10px;
         border: 1px solid white;
@@ -461,7 +468,7 @@ body {
         margin-left: 20px;
         font-size: 13px;
         padding: 7px;
-        background-color: var(--blue);
+        background-color: var(--black);
         color: white;
         border-radius: 10px;
         border: none;
@@ -479,7 +486,7 @@ body {
     }
 
     input[type="submit"]:hover {
-        background-color: var(--grn);
+        background-color: var(--purp);
         color: white;
         cursor: pointer;
     }
@@ -489,7 +496,7 @@ body {
         padding: 20px 10px;
         width: 100%;
         margin: 25px 0px;
-        border: 1px solid var(--blue);
+        border: 1px solid var(--black);
         border-radius: 10px;
         background-color: white;
     }
@@ -510,14 +517,14 @@ body {
         padding: 0 15px 5px 0;
         font-weight: 700;
         font-size: 15px;
-        border-bottom: 1px solid var(--blue);
+        border-bottom: 1px solid var(--black);
         text-transform: uppercase;
         text-align: left;
     }
 
     .spotify-sign-btn {
-        background-color: var(--grn);
-        box-shadow: 5px 2px 10px var(--blue);
+        background-color: var(--purp);
+        box-shadow: 5px 2px 10px var(--black);
         color: white;
         font-weight: 700;
         font-size: 16px;
@@ -529,7 +536,7 @@ body {
     }
 
     .spotify-sign-btn:hover {
-        background-color: var(--grn);
+        background-color: var(--purp);
         color: white;
         cursor: pointer;
     }
@@ -541,8 +548,8 @@ body {
         margin: 0;
         width: 100%;
         height: 45px;
-        background-color: var(--blue);
-        box-shadow: 5px 2px 10px var(--blue);
+        background-color: var(--black);
+        box-shadow: 5px 2px 10px var(--black);
         position: fixed;
         bottom: 0;
         left: 0;
@@ -571,8 +578,8 @@ body {
         align-items: center;
         border: 1px solid white;
         border-radius: 10px;
-        background-color: var(--blue);
-        box-shadow: 5px 2px 10px var(--blue);
+        background-color: var(--black);
+        box-shadow: 5px 2px 10px var(--black);
         color: black;
         width: 45px;
         height: 15%;
